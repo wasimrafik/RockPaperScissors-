@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <style>
+        body{
+            margin: 2rem 5rem;
+            text-align: center;
+            background-color: rgb(77, 146, 114);
+        }
+        select{
+            width: 120px;
+            border-radius: 10px;
+            padding: 0.7rem;
+            font-size: 20px;
+            background-color: rgba(60, 136, 198, 0.829);
+            background-size: cover;
+        }
+        #Player {
+            height: 300px;
+            width: 300px;
+            background: white url(player.png);
+            /* background-size: cover; */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .innerplay{
+            background-color: black;
+            color: white;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 20px;
+        }
+        #Computer {
+            height: 300px;
+            width: 300px;
+            background-image: url(computer.png);
+            background-size: contain;
+            /* background-size: cover; */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .box {
+            display: flex;
+            margin: 1rem 10rem;
+      
+        }
+        #Player{
+            margin-top: 1rem;
+            margin-right: 3rem;
+            margin-left: 10rem;
+            border: 2px solid black;
+            height: 380px;
+        }
+        #Computer{
+            margin-top: 1rem;
+            margin-left: 3rem;
+            border: 2px solid black;
+            height: 380px;
+        }
+        #button{
+            margin-top: 3rem;
+             padding: 15px 25px;
+             font-size: 24px;
+             text-align: center;
+             cursor: pointer;
+             outline: none;
+             color: #fff;
+             background-color: #04AA6D;
+             border: none;
+             border-radius: 15px;
+             box-shadow: 0 9px #999;
+    }
+        #button:hover {
+            background: linear-gradient(#5dd861, rgb(31, 105, 31));
+            color: black;
+        }
+        #button:active {
+             background-color: #5dd861;
+             box-shadow: 0 5px #666;
+             transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    
+<select name="Rock" id="changeimg" onchange="fun1()">
+    <option value="img1.png">Rock</option>
+    <option value="img2.png">Paper</option>
+    <option value="img3.png">Scissor</option>
+</select>
+
+<section id="winsection">
+    <h1>Rock : Paper : Scissor</h1>
+
+    <h2 id="Result">Result</h2>
+    <div class="box">
+        <div id="Player">
+            <div class="innerplay">Player</div>
+        </div>
+        <div id="Computer">
+            <div class="innerplay">Computer</div>
+        </div>
+    </div>
+    <button onclick="Roll()" id="button">Let's Play</button>
+</section>
+
+<script>
+    var player = document.getElementById("Player");
+    var computer = document.getElementById("Computer");
+    var result = document.getElementById("Result");
+
+    function fun1() {
+        var changeimg = document.getElementById("changeimg").value;
+        document.getElementById("Player").style.backgroundImage = "url(" + changeimg + ")";
+    }
+
+    function Roll() {
+        var total = Math.floor(Math.random() * 3 + 1);
+        document.getElementById("Computer").style.backgroundImage = "url(img" + total + ".png)";
+        console.log(total);
+        
+        var playerChoice = document.getElementById("changeimg").value;                       
+        var computerChoice = "img" + total + ".png";
+        
+        if (playerChoice == "img2.png" && computerChoice == "img1.png") {
+            result.innerHTML = "Player Won The Game";
+            console.log("Player Won The Game");
+        } else if (playerChoice == "img1.png" && computerChoice == "img3.png") {
+            result.innerHTML = "Player Won The Game";
+            
+        } else if (playerChoice == "img3.png" && computerChoice == "img2.png") {
+            result.innerHTML = "Player Won The Game";
+        } else if (playerChoice == "img3.png" && computerChoice == "img3.png") {
+            result.innerHTML = "Game is Draw";
+        }
+        else if (playerChoice == "img2.png" && computerChoice == "img2.png") {
+            result.innerHTML = "Game is Draw";
+        }else if (playerChoice == "img1.png" && computerChoice == "img1.png") {
+            result.innerHTML = "Game is Draw";
+        }else {
+            result.innerHTML = "Computer Won The Game";
+        }
+    }
+</script>
+
+</body>
+</html>
